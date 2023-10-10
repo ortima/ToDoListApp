@@ -1,10 +1,11 @@
 const inputBox = document.getElementById('input-box');
 const listContainer = document.getElementById('list-container');
 const label = document.getElementById('label');
+const addTask = document.getElementById('addTask');
+const deleteTask = document.getElementById('refresh-page');
 
-
-function addTask(){
-    if (inputBox.value === ''){
+addTask.addEventListener("click", function(e){
+    if ((inputBox.value).trim().length == 0){
         label.textContent = 'Впишите заметку!';
     }
     else{
@@ -17,35 +18,44 @@ function addTask(){
         let span = document.createElement('span');
         span.innerHTML = "\u00d7";
         li.appendChild(span);
-        SaveData();
+        saveData();
     }
-}
+})
+
 
 listContainer.addEventListener("click", function(e){
     if (e.target.tagName === "LI"){
         e.target.classList.toggle("checked");
-        SaveData()
+        saveData()
     }
     else if (e.target.tagName === "SPAN"){
         e.target.parentElement.remove();
-        SaveData()
+        saveData()
     }
 },false);
 
-let RefreshPage = function(){
-    window.localStorage.clear();
-    window.location.reload();
-}
 
-let SaveData = function(){
+deleteTask.addEventListener("click", function(e){
+    const listItems = document.querySelectorAll('#list-container li');
+    inputBox.value = "";
+    listItems.forEach(listItem => {
+      listItem.parentNode.removeChild(listItem);
+    
+    });   
+
+    window.localStorage.clear();
+
+})
+
+function saveData(){
     localStorage.setItem("data", listContainer.innerHTML);
 }
 
-let Show = function(){
+function show(){
     listContainer.innerHTML = localStorage.getItem("data");
 }
 
-Show();
+show();
 
 
 
