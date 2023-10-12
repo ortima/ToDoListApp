@@ -1,9 +1,16 @@
 const inputBox = document.getElementById('input-box');
-const listContainer = document.getElementById('list-container');
+const listContainer = document.querySelector('.list-container');
 const label = document.getElementById('label');
 const addTask = document.getElementById('addTask');
-const deleteTask = document.getElementById('refresh-page');
+const deleteTask = document.getElementById('btn_refresh');
+const deleteInput = document.getElementById('deleteInput');
 
+
+let enterPress = addTask.addEventListener("keyup", function(e){
+    if (e.code === "Enter"){
+
+    }
+})
 addTask.addEventListener("click", function(e){
     if ((inputBox.value).trim().length == 0){
         label.textContent = 'Впишите заметку!';
@@ -11,14 +18,18 @@ addTask.addEventListener("click", function(e){
     }
     else{
         label.textContent = 'ToDo List HTML/CSS/JavaScript';
+        let ul = document.createElement('ul');
         let li = document.createElement('li');
+        ul.classList.add("row-list");
+
         li.innerHTML = inputBox.value;
         inputBox.value = "" ;
-        listContainer.appendChild(li);
+        listContainer.appendChild(ul);
+        ul.appendChild(li);
 
         let span = document.createElement('span');
         span.innerHTML = "\u00d7";
-        li.appendChild(span);
+        ul.appendChild(span);
         saveData();
     }
 })
@@ -37,7 +48,7 @@ listContainer.addEventListener("click", function(e){
 
 
 deleteTask.addEventListener("click", function(e){
-    const listItems = document.querySelectorAll('#list-container li');
+    const listItems = document.querySelectorAll('.list-container ul');
     inputBox.value = "";
     listItems.forEach(listItem => {
       listItem.parentNode.removeChild(listItem);
@@ -46,6 +57,10 @@ deleteTask.addEventListener("click", function(e){
 
     window.localStorage.clear();
 
+})
+
+deleteInput.addEventListener("click", function(e){
+    inputBox.value = "";
 })
 
 function saveData(){
