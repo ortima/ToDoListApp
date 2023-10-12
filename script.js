@@ -7,6 +7,7 @@ const deleteTask = document.getElementById('refresh-page');
 addTask.addEventListener("click", function(e){
     if ((inputBox.value).trim().length == 0){
         label.textContent = 'Впишите заметку!';
+        inputBox.value = "" ;
     }
     else{
         label.textContent = 'ToDo List HTML/CSS/JavaScript';

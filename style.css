@@ -135,14 +135,14 @@ span:hover{
     color:#fff;
 }
 
-#refresh-page img{
+#btn_refresh img{
     height: 20px;
     width: 20px;
     line-height: 30px;
 
 }
 
-#refresh-page{
+#btn_refresh{
     width: 50px;
     height: 40px;
 }
