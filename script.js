@@ -6,11 +6,6 @@ const deleteTask = document.getElementById('btn_refresh');
 const deleteInput = document.getElementById('deleteInput');
 
 
-let enterPress = addTask.addEventListener("keyup", function(e){
-    if (e.code === "Enter"){
-
-    }
-})
 addTask.addEventListener("click", function(e){
     if ((inputBox.value).trim().length == 0){
         label.textContent = 'Впишите заметку!';
@@ -72,6 +67,5 @@ function show(){
 }
 
 show();
-
 
 
